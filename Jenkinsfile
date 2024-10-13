@@ -3,7 +3,7 @@ pipeline {
  
     environment {
        
-        DOCKER_REGISTRY = 'https://hub.docker.com/u/ahmed10hakem'
+        DOCKER_REGISTRY = 'hub.docker.com/u/ahmed10hakem'
         IMAGE_NAME = 'spring-mvnc'
         TAG = 'latest'  // You can replace this with a version or commit hash
     }
