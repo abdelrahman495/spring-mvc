@@ -2,7 +2,7 @@ pipeline {
     agent { label 'ahmedhakem' }
  
     environment {
-        DOCKER_REGISTRY = 'https://hub.docker.com/'
+        DOCKER_REGISTRY = 'https://hub.docker.com/u/ahmed10hakem?_gl=1*13ova4y*_gcl_au*OTEyMDE4MDU5LjE3MjE3NTU3MzQ.*_ga*MTMwNDY1MzgzNS4xNzIwODAzNjc4*_ga_XJWPQMJYHQ*MTcyODg0Mjk1Ny4yNi4xLjE3Mjg4NDUyMjkuNTkuMC4w'
         IMAGE_NAME = 'spring-mvnc'
         TAG = 'latest'  // You can replace this with a version or commit hash
     }
