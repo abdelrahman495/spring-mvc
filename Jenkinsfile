@@ -3,7 +3,7 @@ pipeline {
  
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-credentials-ahmed')
-        DOCKER_HUB_REPO = 'ahmed10hakem/project-image'
+        DOCKER_HUB_REPO = 'ahmed10hakem/spring-mvnc'
         IMAGE_NAME = 'spring-mvnc'
         TAG = 'latest'  // You can replace this with a version or commit hash
             }
