@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY = 'https://hub.docker.com/'
         IMAGE_NAME = 'spring-mvnc'
-        IMAGE_TAG = 'latest'  // You can replace this with a version or commit hash
+        TAG = 'latest'  // You can replace this with a version or commit hash
     }
 
      stages {
@@ -30,7 +30,7 @@ pipeline {
                 script {
                     docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials') {
                         // Push the image to Docker registry
-                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
+                        docker.image("${IMAGE_NAME}:${TAG}").push()
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Example deployment step (adjust for your environment)
-                echo "Deploying the image ${IMAGE_NAME}:${IMAGE_TAG} to the environment..."
+                echo "Deploying the image ${IMAGE_NAME}:${TAG} to the environment..."
             }
         }
     }
