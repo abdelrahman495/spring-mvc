@@ -1,13 +1,13 @@
 pipeline {
     agent { label 'ahmedhakem' }
-  
+ 
     environment {
-        DOCKER_REGISTRY = 'your-docker-registry-url'
-        IMAGE_NAME = 'mvnc'
+        DOCKER_REGISTRY = 'https://hub.docker.com/'
+        IMAGE_NAME = 'spring-mvnc'
         IMAGE_TAG = 'latest'  // You can replace this with a version or commit hash
     }
 
-    stages {
+     stages {
         stage('Checkout') {
             steps {
                 // Checkout code from your source repository
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    docker.build("${}:${latest}")
+                       sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 // Login to Docker registry
                 script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials-id') {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials') {
                         // Push the image to Docker registry
                         docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
                     }
@@ -50,4 +50,4 @@ pipeline {
             cleanWs()
         }
     }
-}
+}      
