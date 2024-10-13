@@ -2,11 +2,11 @@ pipeline {
     agent { label 'ahmedhakem' }
  
     environment {
-       
-        DOCKER_REGISTRY = 'hub.docker.com/u/ahmed10hakem'
+        DOCKER_HUB_CREDENTIALS = credentials('docker-credentials-ahmed')
+        DOCKER_HUB_REPO = 'ahmed10hakem/project-image'
         IMAGE_NAME = 'spring-mvnc'
         TAG = 'latest'  // You can replace this with a version or commit hash
-    }
+            }
 
      stages {
         stage('Checkout') {
@@ -26,17 +26,15 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-            steps {
-                // Login to Docker registry
+	steps {
                 script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials') {
-                        // Push the image to Docker registry
-                        docker.image("${IMAGE_NAME}:${TAG}").push()
-                    }
+                    sh """
+                    echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin
+                    docker push ${DOCKER_HUB_REPO}:${TAG}
+                    """
                 }
             }
         }
-
         stage('Deploy') {
             steps {
      
