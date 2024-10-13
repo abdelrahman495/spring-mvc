@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 script {
-                    docker.build("${mvnc}:${latest}")
+                    docker.build("${}:${latest}")
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
                 script {
                     docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials-id') {
                         // Push the image to Docker registry
-                        docker.image("${mvnc}:${latest}").push()
+                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Example deployment step (adjust for your environment)
-                echo "Deploying the image ${mvnc}:${latest} to the environment..."
+                echo "Deploying the image ${IMAGE_NAME}:${IMAGE_TAG} to the environment..."
             }
         }
     }
