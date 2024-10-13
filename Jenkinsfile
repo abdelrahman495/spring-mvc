@@ -39,8 +39,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Example deployment step (adjust for your environment)
-                echo "Deploying the image ${IMAGE_NAME}:${TAG} to the environment..."
+     
+                     sh """
+                                docker run -d -p 8085:8080 --name spring-mvnc ahmed10hakem/spring-mvnc:latest
+                            
+                        """
             }
         }
     }
