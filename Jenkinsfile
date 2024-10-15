@@ -39,7 +39,7 @@ pipeline {
             steps {
      
                      sh """
-                                docker run -d -p 8085:8080 --name spring-mvnc abdelrahman495/spring-mvnc:latest
+                                docker run -d -p 8080:8085 --name spring-mvnc abdelrahman495/spring-mvnc:latest
                             
                         """
             }
